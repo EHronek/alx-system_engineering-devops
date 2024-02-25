@@ -3,5 +3,5 @@ counter=0
 while [ $counter -ne 10 ]
 do
     echo "Best School"
-    ((counter++))
+    (( counter++ ))
 done
