@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+#diplays numbers from 1 - 100
+number=1
+while [ $number -le 100 ]; do
+    if [ $((number % 3)) -eq 0 ] && [ $((number % 5)) -eq 0 ]; then
+        echo "FizzBuzz"
+    elif [ $((number % 3)) -eq 0 ]; then
+        echo "Fizz"
+    elif [ $((number % 5)) -eq 0 ]; then
+        echo "Buzz"
+    else
+        echo "$number"
+    fi
+    ((number++))
+done
