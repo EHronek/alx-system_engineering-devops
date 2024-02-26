@@ -5,7 +5,7 @@ while [ $counter -ne 21 ]; do
     case $counter in
         4)
 	    echo "$counter"
-	    echo "bad luck for china"
+	    echo "bad luck From China"
 	    ;;
 	9)
 	    echo "$counter"
