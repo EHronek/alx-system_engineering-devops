@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Displays the contens of the current directory in a list format
+# where the part of the name after the forst dash is displayed
+for file in *-*; do
+    echo "$file" | cut -d '-' -f 2-
+done
