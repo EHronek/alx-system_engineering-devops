@@ -2,20 +2,22 @@
 # displays numbers from 1 to 20, 4- bad luck from china, 9, 17
 counter=1
 while [ $counter -ne 21 ]; do
-    if [ $counter -eq 4 ];
-    then
-        echo $counter
-	echo "bad luck from China"
-    elif [ $counter -eq 9 ];
-    then
-        echo $counter
-        echo "bad luck from Japan"
-    elif [ $counter -eq 17 ];
-    then
-        echo $counter
-        echo "bad luck from Italy"
-    else
-        echo $counter
-    fi
-    ((counter++))
+    case $counter in
+        4)
+	    echo "$counter"
+	    echo "bad luck for china"
+	    ;;
+	9)
+	    echo "$counter"
+	    echo "bad luck from Japan"
+	    ;;
+	17)
+	    echo "$counter"
+	    echo "bad luck from Italy"
+	    ;;
+	*)
+	    echo "$counter"
+	    ;;
+	esac
+	((counter++))
 done
