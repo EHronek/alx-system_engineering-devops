@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# displays numbers from 1 to 20, 4- bad luck from china, 9 - badluck from china
+# displays numbers from 1 to 20, 4- bad luck from china, 9, 17
 counter=1
 while [ $counter -ne 21 ]; do
     if [ $counter -eq 4 ];
