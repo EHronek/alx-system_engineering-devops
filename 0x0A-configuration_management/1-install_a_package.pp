@@ -1,6 +1,5 @@
 # install flask and pip3 
 
-# install flask
 package { 'python3-pip':
     ensure  => 'installed',
 }
