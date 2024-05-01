@@ -1,7 +1,13 @@
 #set up coniguration file so that you can connect to a server
 # without typing a password
-exec { 'echo':
-  path    => 'usr/bin:/bin',
-  command => 'echo " IdentityFile ~/.ssh/schoo\n PasswordAuthentication no" >> /etc/ssh/ssh_config',
-  returns => [0, 1],
+file_line { 'TUrn off passwd-auth':
+  ensure  => 'present',
+  path    => '/etc/ssh/ssh_config',
+  line    => 'PasswordAuthentication no',
+}
+
+file_line { 'Declaring IdentiyFile':
+  ensure  => 'present',
+  path    => '/etc/ssh/ssh_config',
+  line    => 'IdentityFile ~/.ssh/school',
 }
