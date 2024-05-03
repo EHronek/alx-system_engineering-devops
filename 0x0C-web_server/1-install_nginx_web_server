@@ -17,17 +17,11 @@
 # setup custom HTML file
 sudo apt-get update
 sudo apt-get install -y nginx
-sudo cat <<- EOF > /var/www/html/index.html
-	<!DOCTYPE html>
-	<html>
-	<head>
-		<title>Hello World</title>
-	</head>
-	<body>
-		<h1>Hello World!</h1>
-	</body>
-	</html>
-EOF
+
+sudo chmod 666 /var/www/html/index.nginx-debian.html
+sudo chmod 666 /usr/share/nginx/html/index.html
+echo "Hello World!" > /var/www/html/index.nginx-debian.html
+echo "Hello World!" > /usr/share/nginx/html/index.html
 
 # config Nginx to listen on port 80
 sudo cat <<- EOF > /etc/nginx/sites-available/default
