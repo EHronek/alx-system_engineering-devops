@@ -24,7 +24,7 @@ sudo ufw allow 'Nginx HTTP'
 sudo chown -R "$USER":"$USER" /var/www/html
 sudo chown -R 755 /var/www
 
-echo -e "Hello World!" | dd status=none of=/var/www/html/index.nginx-debian.html
+sudo echo -e "Hello World!" | dd status=none of=/var/www/html/index.html
 #sudo chmod 666 /var/www/html/index.nginx-debian.html
 #sudo chmod 666 /usr/share/nginx/html/index.html
 #echo "Hello World!" > /var/www/html/index.nginx-debian.html
