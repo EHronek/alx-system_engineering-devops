@@ -41,5 +41,5 @@ cat <<- EOF > /etc/nginx/sites-available/default
 		}
 	}
 EOF
-sudo service nginx start
+sudo service nginx restart
 
