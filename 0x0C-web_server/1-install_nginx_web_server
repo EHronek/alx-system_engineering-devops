@@ -25,4 +25,4 @@ echo "Hello World!" > /usr/share/nginx/html/index.html
 
 
 # start Nginx
-sudo service nginx start
+sudo service nginx restart
