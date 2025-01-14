@@ -42,4 +42,5 @@ if ! grep -q "listen 80;" /etc/nginx/sites-available/default; then
 	/etc/init.d/nginx reload
 fi
 
+sudo service nginx restart
 echo "Nginx Installation Script is successfull"
