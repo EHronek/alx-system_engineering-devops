@@ -31,4 +31,3 @@ sudo sed -i '/^}/i \    location /redirect_me {\n        return 301 https://www.
 sudo /etc/init.d/nginx reload
 
 sudo service nginx restart
-echo "Nginx Installation Script is successfull"
