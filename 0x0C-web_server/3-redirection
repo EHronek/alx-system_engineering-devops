@@ -1,33 +1,28 @@
 #!/usr/bin/env bash
+# install nginx in a new server
+sudo apt update
+sudo apt -y install nginx
+sudo chmod 666 /var/www/html/index.nginx-debian.html
+sudo chmod 666 /usr/share/nginx/html/index.html
+echo "Hello World!" > /var/www/html/index.nginx-debian.html
+echo "Hello World!" > /usr/share/nginx/html/index.html
 
-sudo apt-get update
-sudo apt-get install nginx -y
+#configure nginx to listen on port 80
+cat <<- EOF > /etc/nginx/sites-available/default
+        server {
+		listen 80;
+		server_name _;
+		add_header X-Served-By \$hostname;
 
-nginx_pid=$(pgrep nginx)
+		location / {
+			root /var/www/html;
+			index index.html;
+		}
+		location /redirect_me {
+			return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+		}
+	}
+EOF
 
-if [ -z "$nginx_pid" ]; then
-    /etc/init.d/nginx start
-fi
-
-sudo ufw allow "Nginx HTTP"
-
-sudo chown -R "$USER":"$USER" /var/www/html
-sudo chmod -R 755 /var/www
-
-echo "Hello World!" > /var/www/html/index.html
-
-#check again if nginx is running and restart if not
-nginx_pid=$(pgrep nginx)
-if [ -z "$nginx_pid" ]; then
-    /etc/init.d/nginx restart
-fi
-
-if ! grep -q "listen 80;" /etc/nginx/sites-available/default; then
-    sed -i 's/listen 80 default_server;/listen 80;/' /etc/nginx/sites-available/default
-	/etc/init.d/nginx reload
-fi
-
-sudo sed -i '/^}/i \    location /redirect_me {\n        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n    }\n' /etc/nginx/sites-available/default
-sudo /etc/init.d/nginx reload
-
+#starting nginx
 sudo service nginx restart
