@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC2154
 # install nginx if not exists
 sudo apt update -y
 sudo apt install -y nginx
@@ -49,4 +50,3 @@ server {
 EOF"
 
 sudo systemctl restart nginx
-
