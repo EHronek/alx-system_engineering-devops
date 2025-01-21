@@ -1,0 +1,24 @@
+#!/bin/bash
+# install nginx if not exists
+sudo apt update -y
+sudo apt install -y nginx
+
+SERVER_NAME=$(hostname)
+sudo bash -c 'cat > /etc/nginx/sites-available/default <<EOF
+server {
+    listen 80 default_server;
+	listen [::]:80 default_server;
+
+	root /var/www/html
+	index index.html index.htm index.nginx-debian.html;
+
+	server_name _;
+
+	location / {
+	    add_header X-Server-By \"$SERVER_NAME\";
+		try_files \$uri \$uri/ =404;
+	}
+}
+EOF'
+
+sudo systemctl restart nginx
