@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+sudo apt-get update
+sudo apt-get install nginx -y
+
+nginx_pid=$(pgrep nginx)
+
+if [ -z "$nginx_pid" ]; then
+    /etc/init.d/nginx start
+fi
+
+sudo ufw allow "Nginx HTTP"
+
+sudo chown -R "$USER":"$USER" /var/www/html
+sudo chmod -R 755 /var/www
+
+echo "Hello World!" > /var/www/html/index.html
+
+#check again if nginx is running and restart if not
+nginx_pid=$(pgrep nginx)
+if [ -z "$nginx_pid" ]; then
+    /etc/init.d/nginx restart
+fi
+
+if ! grep -q "listen 80;" /etc/nginx/sites-available/default; then
+    sed -i 's/listen 80 default_server;/listen 80;/' /etc/nginx/sites-available/default
+	/etc/init.d/nginx reload
+fi
+
+sudo sed -i '/^}/i \    location /redirect_me {\n        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n    }\n' /etc/nginx/sites-available/default
+sudo /etc/init.d/nginx reload
+
+sudo service nginx restart
