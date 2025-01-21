@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# configures nginx so it contains custom header
 # shellcheck disable=SC2154
 # install nginx if not exists
 sudo apt update -y
@@ -33,7 +34,7 @@ server {
 
 	location / {
 			root /var/www/html;
-			index index.html index.htm index.nginx-debian.html;
+			index index.html;
 	}
 
 	location /redirect_me {
