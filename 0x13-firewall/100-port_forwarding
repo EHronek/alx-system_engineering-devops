@@ -1,0 +1,10 @@
+# Commands to configure firewall to allow port forwarding from 8080/tcp to 80/tcp
+sudo vi /etc/ufw/before.rules
+
+*nat
+:PREROUTING ACCEPT [0:0]
+-A PREROUTING -p tcp --dport 8080 -j REDIRECT --to-port 80
+COMMIT
+
+
+sudo ufw reload
