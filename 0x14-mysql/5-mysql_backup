@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# This script generates a mysql dump and compresses it into a date-stamped archive
+
+mysqldump -u root -p"$1" --all-databases > backup.sql
+
+if [ $? -ne 0 ]; then
+	echo "Error: MySQL dunp failed. Check your password or permissions."
+	exit 1
+fi
+
+current_date=$(date +"%d-%m-%Y")
+tar -czf "$current_date.tar.gz" backup.sql
+
+echo "backup.sql"
