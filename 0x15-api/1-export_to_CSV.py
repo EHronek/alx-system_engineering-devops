@@ -5,8 +5,13 @@ import requests
 import sys
 
 
-def export_employee_data_to_csv(emp_id):
-    """exports employee data to csv file"""
+#def export_employee_data_to_csv(emp_id):
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Employee id argument required")
+        sys.exit(1)
+
+    emp_id = sys.argv[1]
     user_url = f"https://jsonplaceholder.typicode.com/users/{emp_id}"
     todos_url = f"https://jsonplaceholder.typicode.com/users/{emp_id}/todos"
 
@@ -31,17 +36,4 @@ def export_employee_data_to_csv(emp_id):
 
     except requests.exceptions.RequestException as e:
         print("Error fetchinf data")
-        sys.exit(1)
-
-
-if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Provide an employee id as argument")
-        sys.exit(1)
-
-    try:
-        emp_id = int(sys.argv[1])
-        export_employee_data_to_csv(emp_id)
-    except ValueError:
-        print("Employee id should be an integer!")
         sys.exit(1)
