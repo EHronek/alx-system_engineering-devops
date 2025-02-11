@@ -25,7 +25,7 @@ if __name__ == "__main__":
         todos_json_data = todos_response.json()
 
         file_name = f"{emp_id}.csv"
-        with open(file_name, mode='w', newline='') as csv_file:
+        with open(file_name, 'w') as csv_file:
             # writer = csv.writer(csv_file, quoting=csv.QUOTE_ALL)
             # writer.writerows(csv_data)
             # print(f"Data exported to {file_name}")
