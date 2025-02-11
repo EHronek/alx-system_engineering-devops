@@ -23,13 +23,16 @@ def get_employee_data(emp_id):
         total_tasks = len(todos_data)
         completed_tasks_number = len(completed_tasks)
 
-        print(f"Employee {emp_name} is done with tasks({completed_tasks_number}/{total_tasks}):")
+        print(f"Employee {emp_name} is done with
+              tasks({completed_tasks_number}/{total_tasks}):")
+
         for task in completed_tasks:
             print(f"\t {task['title']}")
 
     except requests.exceptions.RequestException as e:
         print(f"Error fetching data: {e}")
         sys.exit(1)
+
 
 if __name__ == "__main__":
     try:
