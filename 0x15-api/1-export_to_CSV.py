@@ -20,20 +20,14 @@ def export_employee_data_to_csv(emp_id):
         todos_response.raise_for_status()
         todos_json_data = todos_response.json()
 
-        csv_data = []
-        for task in todos_json_data:
-            csv_data.append([
-                emp_id,
-                username,
-                str(task['completed']),
-                task['title']
-            ])
-
         file_name = f"{emp_id}.csv"
         with open(file_name, mode='w', newline='') as csv_file:
-            writer = csv.writer(csv_file, quoting=csv.QUOTE_ALL)
-            writer.writerows(csv_data)
-            print(f"Data exported to {file_name}")
+            # writer = csv.writer(csv_file, quoting=csv.QUOTE_ALL)
+            # writer.writerows(csv_data)
+            # print(f"Data exported to {file_name}")
+            for task in todos_json_data:
+                csv_file.write('"{}", "{}", "{}", "{}"\n'.format(
+                    emp_id, username, task['completed'], task['title']))
 
     except requests.exceptions.RequestException as e:
         print("Error fetchinf data")
