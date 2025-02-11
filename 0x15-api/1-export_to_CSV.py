@@ -5,7 +5,6 @@ import requests
 import sys
 
 
-#def export_employee_data_to_csv(emp_id):
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Employee id argument required")
