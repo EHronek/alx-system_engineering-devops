@@ -8,9 +8,8 @@ if __name__ == "__main__":
     users_url = "https://jsonplaceholder.typicode.com/users"
     todos_url = "https://jsonplaceholder.typicode.com/todos"
 
-
     users_response = requests.get(users_url)
-    users_response.raise_for_status()  # Raise an error for bad responses (4xx or 5xx)
+    users_response.raise_for_status()
     users_data = users_response.json()
 
     todos_response = requests.get(todos_url)
@@ -20,7 +19,7 @@ if __name__ == "__main__":
     all_tasks = {}
 
     for user in users_data:
-        user_id = str(user["id"])  # Convert user ID to string
+        user_id = str(user["id"])
         username = user["username"]
         user_tasks = []
 
