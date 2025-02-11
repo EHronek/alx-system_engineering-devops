@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """Script exports data in the csv format"""
+import csv
 import requests
 import sys
-import csv
 
 
 def export_employee_data_to_csv(emp_id):
