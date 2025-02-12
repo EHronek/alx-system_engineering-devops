@@ -1,11 +1,13 @@
 #!/usr/bin/python3
 """Script tghat returns information about an employee using given REST API"""
+
 import requests
 import sys
 
 
-def get_employee_data(emp_id):
+if __name__ == "__main__":    
     """Define the base url for the api"""
+    emp_id = sys.argv[1]
     user_url = f"https://jsonplaceholder.typicode.com/users/{emp_id}"
     todos_url = f"https://jsonplaceholder.typicode.com/users/{emp_id}/todos"
 
@@ -23,20 +25,11 @@ def get_employee_data(emp_id):
         total_tasks = len(todos_data)
         completed_tasks_number = len(completed_tasks)
 
-        print(f"Employee {emp_name} is done with
-              tasks({completed_tasks_number}/{total_tasks}):")
+        print(f"Employee {emp_name} is done with tasks({completed_tasks_number}/{total_tasks}):")
 
         for task in completed_tasks:
             print(f"\t {task['title']}")
 
     except requests.exceptions.RequestException as e:
         print(f"Error fetching data: {e}")
-        sys.exit(1)
-
-
-if __name__ == "__main__":
-    try:
-        emp_id = int(sys.argv[1])
-        get_employee_data(emp_id)
-    except ValueError:
         sys.exit(1)
