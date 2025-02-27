@@ -8,7 +8,7 @@ def top_ten(subreddit):
     ''' functionm to return the top ten posts for a given subreddit'''
     url = f"https://www.reddit.com/r/{subreddit}/hot.json?limit=10"
     headers = {'User-Agent': 'MyBot/0.0.1'}
-    
+
     try:
         response = requests.get(url, headers=headers, allow_redirects=False)
         if response.status_code == 200:
