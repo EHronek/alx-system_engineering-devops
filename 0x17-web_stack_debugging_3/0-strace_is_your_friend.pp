@@ -1,6 +1,6 @@
-# Fixes bug in my wordpress file
+# script o fix an error in afile in my server
 
-exec { 'wordpress_fix':
-  command => 'sed -i s/phpp/php/g /var/www/html/wp-setting.php',
-  path    => '/usr/bin:/bin'
+exec { 'fix an error in my file':
+  command => 'test -f /var/www/html/wp-settings.php && sed -i s/phpp/php/g /var/www/html/wp-settings.php',
+    path    => '/usr/bin:/bin',
 }
